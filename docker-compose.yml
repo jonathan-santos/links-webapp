@@ -8,5 +8,26 @@ services:
       - 3000:5000
     volumes:
       - .:/app
+    networks:
+      - links-app
     environment:
       - FLASK_ENV=development
+    depends_on:
+      - postgres
+
+  postgres:
+    container_name: links-app-postgres
+    image: postgres:14.3-alpine
+    ports:
+      - 5432:5432
+    networks:
+      - links-app
+    environment:
+      - POSTGRES_DB=links-app_db
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+
+networks:
+  links-app:
+    driver: bridge
+  
