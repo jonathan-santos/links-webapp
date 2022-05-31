@@ -5,7 +5,7 @@ services:
     container_name: links-app-server
     build: .
     ports:
-      - 8000:5000
+      - 3000:5000
     volumes:
       - .:/app
     environment:
