@@ -9,7 +9,7 @@ services:
     volumes:
       - .:/app
     networks:
-      - links-app
+      - default
     environment:
       - FLASK_ENV=development
     depends_on:
@@ -21,13 +21,8 @@ services:
     ports:
       - 5432:5432
     networks:
-      - links-app
+      - default
     environment:
       - POSTGRES_DB=links-app_db
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
-
-networks:
-  links-app:
-    driver: bridge
-  
