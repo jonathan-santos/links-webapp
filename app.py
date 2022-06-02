@@ -1,17 +1,27 @@
-from flask import Flask, render_template
 import psycopg2
+import os
+import sys
+
+from dotenv import load_dotenv
+from flask import Flask, render_template
 
 app = Flask(__name__)
 
-@app.route('/init')
-def init():
-  conn = psycopg2.connect(dbname="links-app_db", user="postgres", password="postgres", host="postgres")
+if not os.path.isfile(".env"):
+  print("No '.env' file found! Exiting...")
+  sys.exit(1)
+
+load_dotenv()
+
+@app.route('/something')
+def something():
+  conn = psycopg2.connect(dbname=os.environ['DB_DATABASE'], user=os.environ['DB_USER'], password=os.environ['DB_PASSWORD'], host=os.environ['DB_HOST'])
 
   cur = conn.cursor()
 
-  cur.execute("CREATE TABLE something (name TEXT)")
+  cur.close()
 
-  conn.commit()
+  conn.close()
   
   return 'OK', 200
 
