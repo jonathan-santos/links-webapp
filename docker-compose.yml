@@ -23,6 +23,6 @@ services:
     networks:
       - default
     environment:
-      - POSTGRES_DB=links-app_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - "POSTGRES_DB=${DB_DATABASE}"
+      - "POSTGRES_USER=${DB_USER}"
+      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
