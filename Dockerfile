@@ -11,6 +11,6 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 5000
+EXPOSE 3000
 
-CMD [ "flask", "run"]
+CMD [ "gunicorn", "app.main:create_app()"]
