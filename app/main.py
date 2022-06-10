@@ -20,7 +20,7 @@ def create_app():
 
     cur = conn.cursor()
 
-    cur.execute("SELECT * FROM something")
+    cur.execute("SELECT * FROM links")
 
     print(cur.fetchall())
 
@@ -31,7 +31,15 @@ def create_app():
     return 'OK', 200
 
   @app.route('/')
-  def home():
-    return render_template('home.html')
+  def index():
+    return render_template('index.html')
+
+  @app.route('/register')
+  def register():
+    return render_template('register.html')
+
+  @app.route('/login')
+  def login():
+    return render_template('login.html')
 
   return app

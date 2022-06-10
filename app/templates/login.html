@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<title>Login</title>
+{% endblock %}
+
+{% block main %}
+<h1>Login</h1>
+
+<form action='/login' method='POST'>
+  <div>
+    <label for='email'>email</label>
+    <input id='email' name='email' placeholder='email' type='email' minlength='1' maxlength='50'
+      pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required>
+  </div>
+
+  <div>
+    <label for='password'>password</label>
+    <input id='password' name='password' placeholder='password' type='password' minlength='1' maxlength='50' required>
+  </div>
+
+  <div>
+    <input type="submit" value="Login">
+  </div>
+</form>
+{% endblock %}

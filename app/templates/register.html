@@ -1,0 +1,38 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<title>Register</title>
+{% endblock %}
+
+{% block main %}
+<h1>Register</h1>
+
+<form action='/register' method='POST'>
+  <div>
+    <label for='username'>Username</label>
+    <input id='username' name='username' placeholder='username' minlength='1' maxlength='50' autocomplete='off'
+      autofocus required>
+  </div>
+
+  <div>
+    <label for='email'>email</label>
+    <input id='email' name='email' placeholder='email' type='email' minlength='1' maxlength='50'
+      pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required>
+  </div>
+
+  <div>
+    <label for='password'>password</label>
+    <input id='password' name='password' placeholder='password' type='password' minlength='1' maxlength='50' required>
+  </div>
+
+  <div>
+    <label for='confirm-password'>Confirm password</label>
+    <input id='confirm-password' name='confirm-password' placeholder='confirm-password' type='Confirm password'
+      minlength='1' maxlength='50' required>
+  </div>
+
+  <div>
+    <input type="submit" value="Register">
+  </div>
+</form>
+{% endblock %}
