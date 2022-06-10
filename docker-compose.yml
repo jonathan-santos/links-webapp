@@ -2,7 +2,7 @@ version: '3.9'
 
 services:
   server:
-    container_name: links-app-server
+    container_name: links-webapp-server
     build: .
     ports:
       - 3000:3000
@@ -17,7 +17,7 @@ services:
       - postgres
 
   postgres:
-    container_name: links-app-postgres
+    container_name: links-webapp-postgres
     image: postgres:14.3-alpine
     ports:
       - 5432:5432
