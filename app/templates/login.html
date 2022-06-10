@@ -5,22 +5,23 @@
 {% endblock %}
 
 {% block main %}
-<h1>Login</h1>
+<h1 class='mb-5'>Login</h1>
 
-<form action='/login' method='POST'>
-  <div>
-    <label for='email'>email</label>
-    <input id='email' name='email' placeholder='email' type='email' minlength='1' maxlength='50'
+<form action='/login' method='POST' class='needs-validation'>
+  <div class='input-group mb-4'>
+    <label for='email' class='form-label w-100'>Email:</label>
+
+    <input id='email' name='email' class='form-control' placeholder='email' type='email' minlength='1' maxlength='50'
       pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required>
   </div>
 
-  <div>
-    <label for='password'>password</label>
-    <input id='password' name='password' placeholder='password' type='password' minlength='1' maxlength='50' required>
+  <div class='input-group mb-4'>
+    <label for='password' class='form-label w-100'>Password:</label>
+
+    <input id='password' name='password' class='form-control' placeholder='password' type='password' minlength='1'
+      maxlength='50' required>
   </div>
 
-  <div>
-    <input type="submit" value="Login">
-  </div>
+  <input class='btn btn-primary w-100' type="submit" value="Login">
 </form>
 {% endblock %}
