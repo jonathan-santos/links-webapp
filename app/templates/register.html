@@ -11,21 +11,21 @@
   <div class='input-group mb-4'>
     <label for='username' class='form-label w-100'>Username:</label>
 
-    <input id='username' name='username' class='form-control' placeholder='username' minlength='1' maxlength='50'
+    <input id='username' name='username' class='form-control' placeholder='username' minlength='2' maxlength='50'
       autocomplete='off' autofocus required>
   </div>
 
   <div class='input-group mb-4'>
     <label for='email' class='form-label w-100'>Email:</label>
 
-    <input id='email' name='email' class='form-control' placeholder='email' type='email' minlength='1' maxlength='50'
-      pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required>
+    <input id='email' name='email' class='form-control' placeholder='email' type='email' maxlength='255'
+      pattern='[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$' required>
   </div>
 
   <div class='input-group mb-4'>
     <label for='password' class='form-label w-100'>Password:</label>
 
-    <input id='password' name='password' class='form-control' placeholder='password' type='password' minlength='1'
+    <input id='password' name='password' class='form-control' placeholder='password' type='password' minlength='2'
       maxlength='50' required>
   </div>
 
@@ -33,9 +33,37 @@
     <label for='confirm-password' class='form-label w-100'>Confirm password:</label>
 
     <input id='confirm-password' name='confirm-password' class='form-control' placeholder='confirm-password'
-      type='Confirm password' minlength='1' maxlength='50' required>
+      type='password' minlength='1' maxlength='50' required>
   </div>
 
   <input class='btn btn-primary w-100' type="submit" value="Register">
 </form>
+
+<script>
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const password = document.querySelector('#password').value
+    const confirmPassword = document.querySelector('#confirm-password').value
+
+    if (password !== confirmPassword) {
+      alert("Passwords do not match")
+      return
+    }
+
+    fetch('/register', {
+      method: 'POST',
+      body: new FormData(e.target),
+      redirect: 'follow'
+    }).then(res => {
+      if (res.redirected) {
+        window.location.href = res.url;
+      }
+
+      console.log(res)
+    }).catch(error => {
+      console.error(error)
+    })
+  })
+</script>
 {% endblock %}

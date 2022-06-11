@@ -24,4 +24,24 @@
 
   <input class='btn btn-primary w-100' type="submit" value="Login">
 </form>
+
+<script>
+  document.querySelector('form').addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    fetch('/login', {
+      method: 'POST',
+      body: new FormData(e.target),
+      redirect: 'follow'
+    }).then(res => {
+      if (res.redirected) {
+        window.location.href = res.url;
+      }
+
+      console.log(res)
+    }).catch(error => {
+      console.error(error)
+    })
+  })
+</script>
 {% endblock %}
