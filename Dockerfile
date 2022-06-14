@@ -13,4 +13,4 @@ COPY . .
 
 EXPOSE 3000
 
-CMD [ "gunicorn", "app.main:create_app()"]
+CMD [ "gunicorn", "app:create_app()"]
