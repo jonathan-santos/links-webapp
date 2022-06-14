@@ -3,25 +3,13 @@ import os
 import sys
 
 from .db import get_db_connection
+from .models import User
 
 from http import HTTPStatus
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
 from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, abort
 from werkzeug.security import check_password_hash, generate_password_hash
-
-class User ():
-  def __init__(self, id, username, email):
-    self.id = id
-    self.username = username
-    self.email = email
-    self.is_authenticated = True
-    self.is_active = True
-    self.is_anonymous = False
-
-
-  def get_id(self):
-    return str(self.id)
 
 def create_app():
   app = Flask(__name__) 
