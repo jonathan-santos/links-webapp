@@ -7,7 +7,7 @@ from .auth import config_auth
 
 login_manager = LoginManager()
 
-def create_app():
+def init_app():
   app = Flask(__name__)
 
   load_config(app)
