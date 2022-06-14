@@ -1,7 +1,8 @@
-import psycopg2
 import re
 import os
 import sys
+
+from .db import get_db_connection
 
 from http import HTTPStatus
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
@@ -21,17 +22,6 @@ class User ():
 
   def get_id(self):
     return str(self.id)
-
-
-def get_db_connection():
-    con = psycopg2.connect(
-      dbname=os.environ['DB_DATABASE'],
-      user=os.environ['DB_USER'],
-      password=os.environ['DB_PASSWORD'],
-      host=os.environ['DB_HOST']
-    )
-
-    return con
 
 def create_app():
   app = Flask(__name__) 
