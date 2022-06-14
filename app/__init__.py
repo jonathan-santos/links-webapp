@@ -1,26 +1,18 @@
 import re
-import os
-import sys
 
+from .config import load_config
 from .db import get_db_connection
 from .models import User
 
 from http import HTTPStatus
 from flask_login import LoginManager, login_required, login_user, logout_user, current_user
-from dotenv import load_dotenv
 from flask import Flask, redirect, render_template, request, url_for, abort
 from werkzeug.security import check_password_hash, generate_password_hash
 
 def create_app():
-  app = Flask(__name__) 
+  app = Flask(__name__)
 
-  if not os.path.isfile(".env"):
-    print("\nNo '.env' file found! Exiting...\n")
-    sys.exit(4)
-
-  load_dotenv()
-
-  app.config['SECRET_KEY'] = os.environ['SECRET_KEY']
+  load_config(app)
 
   login_manager = LoginManager()
   login_manager.init_app(app)
