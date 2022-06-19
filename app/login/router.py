@@ -12,8 +12,8 @@ login = Blueprint(
 
 @login.route('/login', methods=['GET', 'POST'])
 def login_page():
-  # if is_user_authenticated:
-  #   return redirect('/')
+  if is_user_authenticated():
+    return redirect('/')
   
   if (request.method == 'GET'):
     return render_template('login.html')

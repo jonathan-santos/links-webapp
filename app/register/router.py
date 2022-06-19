@@ -11,8 +11,8 @@ register = Blueprint(
 
 @register.route('/register', methods=['GET', 'POST'])
 def register_page():
-  # if is_user_authenticated:
-  #   return redirect('/')
+  if is_user_authenticated():
+    return redirect('/')
   
   if (request.method == 'GET'):
     return render_template('register.html')
