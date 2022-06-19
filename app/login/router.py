@@ -51,7 +51,7 @@ def login_page():
   if not check_password_hash(user[3], password):
     return ("wrong password", 400)
 
-  user_login(user_id=user[0], username=user[1], password=user[2])
+  user_login(user_id=user[0], username=user[1], email=user[2])
 
   cur.close()
   con.close()
