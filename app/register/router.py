@@ -1,7 +1,8 @@
+from re import match
 from flask import Blueprint, redirect, render_template, request
 from werkzeug.security import generate_password_hash
 
-from ..db import get_db_connection
+from ..db import DB
 from ..auth import is_user_authenticated, user_login
 
 register = Blueprint(
@@ -33,7 +34,7 @@ def register_page():
   if not email:
       return ("email cannot be empty", 400)
 
-  if not re.match('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', email):
+  if not match('^[a-z0-9]+[\._]?[a-z0-9]+[@]\w+[.]\w{2,3}$', email):
     return ("email is invalid", 400)
 
   if len(email) > 50:
@@ -48,39 +49,33 @@ def register_page():
   if len(password) > 50:
     return ("password length cannot be greater than 50", 400)
 
-  con = get_db_connection()
-  cur = con.cursor()
-
-  cur.execute("SELECT username FROM users")
-  same_usernames = cur.fetchone() or []
+  db = DB("SELECT username FROM users")
+  same_usernames = db.getOne() or []
 
   if (not len(same_usernames) == 0):
-    cur.close()
-    con.close()
+    db.close()
     return ("username already used", 400)
 
-  cur.execute("SELECT email FROM users")
-  same_emails = cur.fetchone() or []
+  db.execute("SELECT email FROM users")
+  same_emails = db.getOne() or []
 
   if (not len(same_emails) == 0):
-    cur.close()
-    con.close()
+    db.close()
     return ("email already used", 400)
 
   password_hash = generate_password_hash(password)
 
-  cur.execute("""
+  db.execute("""
     INSERT INTO users (username, email, password, created_at)
     VALUES (%s, %s, %s, NOW())
     RETURNING id
-  """, (username, email, password_hash))
+  """, [username, email, password_hash])
 
-  user_id = cur.fetchone()[0]
+  user_id = db.getOne()[0]
 
   user_login(user_id, username, email)
 
-  con.commit()
-  cur.close()
-  con.close()
+  db.save()
+  db.close()
 
   return redirect('/')

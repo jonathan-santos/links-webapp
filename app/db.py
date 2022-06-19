@@ -1,12 +1,34 @@
-import psycopg2
-import os
+from psycopg2 import connect
+from os import environ
 
-def get_db_connection():
-    con = psycopg2.connect(
-      dbname=os.environ['DB_DATABASE'],
-      user=os.environ['DB_USER'],
-      password=os.environ['DB_PASSWORD'],
-      host=os.environ['DB_HOST']
+class DB:
+  def __init__(self, query = None, params = []):
+    self.conn = self.connect()
+    self.cur = self.conn.cursor() #cursor_factory=DictCursor
+
+    if (query):
+      self.execute(query, params)
+
+  def connect(self):
+    return connect(
+      dbname=environ['DB_DATABASE'],
+      user=environ['DB_USER'],
+      password=environ['DB_PASSWORD'],
+      host=environ['DB_HOST']
     )
 
-    return con
+  def execute(self, query, params = []):
+    self.cur.execute(query, params)
+
+  def getOne(self):
+    return self.cur.fetchone()
+
+  def getAll(self):
+    return self.cur.fetchall()
+
+  def save(self):
+    self.conn.commit()
+
+  def close(self):
+    self.cur.close()
+    self.conn.close()

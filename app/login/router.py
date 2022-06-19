@@ -2,7 +2,7 @@ from flask import Blueprint, redirect, render_template, request
 from re import match
 from werkzeug.security import check_password_hash
 
-from ..db import get_db_connection
+from ..db import DB
 from ..auth import is_user_authenticated, user_login
 
 login = Blueprint(
@@ -39,11 +39,9 @@ def login_page():
   if len(password) > 50:
     return ("password length cannot be greater than 50", 400)
 
-  con = get_db_connection()
-  cur = con.cursor()
-
-  cur.execute("SELECT * FROM users WHERE email =  %s", (email,))
-  user = cur.fetchone()
+  db = DB("SELECT * FROM users WHERE email =  %s", [email])
+  user = db.getOne()
+  db.close()
 
   if not user:
     return ("email not found", 400)
@@ -53,6 +51,4 @@ def login_page():
 
   user_login(user_id=user[0], username=user[1], email=user[2])
 
-  cur.close()
-  con.close()
   return redirect('/')
