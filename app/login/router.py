@@ -1,17 +1,19 @@
-from flask_login import login_user, current_user
 from flask import Blueprint, redirect, render_template, request
-from werkzeug.security import check_password_hash
 from re import match
+from werkzeug.security import check_password_hash
+
+from ..db import get_db_connection
+from ..auth import is_user_authenticated, user_login
 
 login = Blueprint(
-    'login', __name__,
-    template_folder='templates'
+  'login', __name__,
+  template_folder='templates'
 )
 
 @login.route('/login', methods=['GET', 'POST'])
 def login_page():
-  if current_user.is_authenticated:
-    return redirect('/')
+  # if is_user_authenticated:
+  #   return redirect('/')
   
   if (request.method == 'GET'):
     return render_template('login.html')
@@ -49,7 +51,7 @@ def login_page():
   if not check_password_hash(user[3], password):
     return ("wrong password", 400)
 
-  login_user(User(user[0], user[1], user[2]))
+  user_login(user_id=user[0], username=user[1], password=user[2])
 
   cur.close()
   con.close()

@@ -1,21 +1,18 @@
-from flask_login import login_user, current_user
-from flask import redirect, render_template, request
+from flask import Blueprint, redirect, render_template, request
 from werkzeug.security import generate_password_hash
 
-from flask import Blueprint, render_template
+from ..db import get_db_connection
+from ..auth import is_user_authenticated, user_login
 
 register = Blueprint(
-    'register', __name__,
-    template_folder='templates'
+  'register', __name__,
+  template_folder='templates'
 )
-
-from ..db import get_db_connection
-from ..models import User
 
 @register.route('/register', methods=['GET', 'POST'])
 def register_page():
-  if current_user.is_authenticated:
-    return redirect('/')
+  # if is_user_authenticated:
+  #   return redirect('/')
   
   if (request.method == 'GET'):
     return render_template('register.html')
@@ -80,7 +77,7 @@ def register_page():
 
   user_id = cur.fetchone()[0]
 
-  login_user(User(user_id, username, email))
+  user_login(user_id, username, email)
 
   con.commit()
   cur.close()
