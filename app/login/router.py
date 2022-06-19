@@ -39,7 +39,7 @@ def login_page():
   if len(password) > 50:
     return ("password length cannot be greater than 50", 400)
 
-  db = DB("SELECT * FROM users WHERE email =  %s", [email])
+  db = DB("SELECT * FROM users WHERE email = %s", [email])
   user = db.getOne()
   db.close()
 
@@ -49,6 +49,6 @@ def login_page():
   if not check_password_hash(user[3], password):
     return ("wrong password", 400)
 
-  user_login(user_id=user[0], username=user[1], email=user[2])
+  user_login(user)
 
   return redirect('/')

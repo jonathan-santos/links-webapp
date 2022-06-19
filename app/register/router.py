@@ -14,7 +14,7 @@ register = Blueprint(
 def register_page():
   if is_user_authenticated():
     return redirect('/')
-  
+
   if (request.method == 'GET'):
     return render_template('register.html')
   
@@ -49,17 +49,19 @@ def register_page():
   if len(password) > 50:
     return ("password length cannot be greater than 50", 400)
 
-  db = DB("SELECT username FROM users")
-  same_usernames = db.getOne() or []
+  db = DB("SELECT id FROM users WHERE username = %s", [username])
 
-  if (not len(same_usernames) == 0):
+  username_already_exists = db.getOne()
+
+  if (username_already_exists):
     db.close()
     return ("username already used", 400)
 
-  db.execute("SELECT email FROM users")
-  same_emails = db.getOne() or []
+  db.execute("SELECT id FROM users WHERE email = %s", [email])
+  
+  email_already_exists = db.getOne()
 
-  if (not len(same_emails) == 0):
+  if (email_already_exists):
     db.close()
     return ("email already used", 400)
 
@@ -73,7 +75,13 @@ def register_page():
 
   user_id = db.getOne()[0]
 
-  user_login(user_id, username, email)
+  user = {
+    "id": user_id,
+    "username": username,
+    "email": email
+  }
+
+  user_login(user)
 
   db.save()
   db.close()

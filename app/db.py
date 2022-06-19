@@ -1,12 +1,15 @@
 from psycopg2 import connect
+from psycopg2.extras import DictCursor
 from os import environ
 
 class DB:
   def __init__(self, query = None, params = []):
     self.conn = self.connect()
-    self.cur = self.conn.cursor() #cursor_factory=DictCursor
 
-    if (query):
+    # Makes results in functions getOne and getAll come in dictionary format
+    self.cur = self.conn.cursor(cursor_factory=DictCursor)
+
+    if query:
       self.execute(query, params)
 
   def connect(self):

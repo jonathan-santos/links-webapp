@@ -16,8 +16,14 @@ class User ():
   def get_id(self):
     return str(self.id)
 
-def user_login(user_id, username, email):
-  login_user(User(user_id, username, email))
+def user_login(user):
+  login_user(
+    User(
+      id=user["id"],
+      username=user["username"],
+      email=user["email"]
+    )
+  )
 
 def is_user_authenticated():
   return current_user.is_authenticated
@@ -39,4 +45,4 @@ def config_auth(login_manager):
     if not user:
       return None
 
-    return User(id=user[0], username=user[1], email=user[2])
+    return User(id=user["id"], username=user["username"], email=user["email"])
