@@ -4,10 +4,10 @@ from flask_login import LoginManager
 from .config import load_config
 from .auth import config_auth
 
-from .index.router import index
-from .register.router import register
-from .login.router import login
-from .logout.router import logout
+from .routes.index.router import index
+from .routes.register.router import register
+from .routes.login.router import login
+from .routes.logout.router import logout
 
 login_manager = LoginManager()
 
