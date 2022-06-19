@@ -41,4 +41,4 @@ def config_auth(login_manager):
     if not user:
       return None
 
-    return User(user[0], user[1], user[2])
+    return User(user_id=user[0], username=user[1], email=user[2])
