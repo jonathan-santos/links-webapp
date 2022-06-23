@@ -1,7 +1,7 @@
 from flask import Blueprint, render_template
 from flask_login import login_required
 
-from ...db import DB
+from app.db import DB
 
 index = Blueprint(
   'index', __name__,

@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template
 
-from ...db import DB
+from app.db import DB
 
 tags = Blueprint(
   'tags', __name__,

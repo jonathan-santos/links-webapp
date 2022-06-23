@@ -2,8 +2,8 @@ from flask import Blueprint, redirect, render_template, request
 from re import match
 from werkzeug.security import check_password_hash
 
-from ...db import DB
-from ...auth import is_user_authenticated, user_login
+from app.db import DB
+from app.auth import is_user_authenticated, user_login
 
 login = Blueprint(
   'login', __name__,
