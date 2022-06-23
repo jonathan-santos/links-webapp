@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<title>Your links</title>
+{% endblock %}
+
+{% block main %}
+<h1 class='mb-5'>Your links</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>tag</th>
+      <th>url</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for link in links %}
+    <tr>
+      <td>{{ link['title'] }}</td>
+      <td>{{ link['url'] }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

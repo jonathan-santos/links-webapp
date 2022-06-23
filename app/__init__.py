@@ -9,6 +9,7 @@ from .routes.register.router import register
 from .routes.login.router import login
 from .routes.logout.router import logout
 from .routes.links_new.router import links_new
+from .routes.user_links.router import user_links
 from .routes.tags.router import tags
 from .routes.tags_new.router import tags_new
 
@@ -26,6 +27,7 @@ def init_app():
     app.register_blueprint(login)
     app.register_blueprint(logout)
     app.register_blueprint(links_new)
+    app.register_blueprint(user_links)
     app.register_blueprint(tags)
     app.register_blueprint(tags_new)
 
