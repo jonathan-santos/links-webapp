@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<title>New Tag</title>
+{% endblock %}
+
+{% block main %}
+<h1 class='mb-5'>Create new Tag</h1>
+
+<form action='/links/new' method='POST' class='needs-validation'>
+  <div class='input-group mb-4'>
+    <label for='tag' class='form-label w-100'>tag:</label>
+
+    <input id='tag' name='tag' class='form-control' placeholder='tag' autocomplete='off' min='2' max='50' autofocus required>
+  </div>
+
+  <input class='btn btn-primary w-100' type="submit" value="Create tag">
+</form>
+{% endblock %}
