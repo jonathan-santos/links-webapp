@@ -1,8 +1,8 @@
 from flask import Blueprint, render_template, request
-from flask_login import login_required, current_user
-from re import match
+from flask_login import login_required
 
-from ...db import DB
+from app.db import DB
+from app.utils import clean_string
 
 tags_new = Blueprint(
   'tags_new', __name__,
@@ -30,7 +30,7 @@ def tags_new_page():
     INSERT INTO tags (title, created_at)
     VALUES (%s, NOW())
     RETURNING id
-  """, [tag])
+  """, [clean_string(tag)])
 
   db.save()
   db.close()
