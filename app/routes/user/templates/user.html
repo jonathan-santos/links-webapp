@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block head %}
+<title>User: {{ user['username'] }}</title>
+{% endblock %}
+
+{% block main %}
+<h1 class='mb-5'>User: {{ user['username'] }}</h1>
+
+{% if tags|length > 0 %}
+<p>Tags this user has links with</p>
+
+<ul>
+  {% for tag in tags %}
+    <li>{{ tag['title'] }}</li>
+  {% endfor %}
+</ul>
+{% endif %}
+
+{% if not link == None %}
+  <a href='{{ link["url"] }}'>A link from this user</a>
+{% else %}
+  This user does not have links yet
+{% endif %}
+
+{% endblock %}
