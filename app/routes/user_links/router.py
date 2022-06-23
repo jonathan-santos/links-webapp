@@ -21,7 +21,5 @@ def user_links_page():
   links = db.getAll()
   db.close()
 
-  print("links",links)
-  
   return render_template('user_links.html', links=links)
   

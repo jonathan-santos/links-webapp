@@ -16,8 +16,6 @@ def tag_page(tag_id):
     db.close()
     return ('Not found', 404)
 
-  print('tag', tag)
-
   db.execute("SELECT url FROM links WHERE tag_id = %s ORDER BY random() LIMIT 1", [tag['id']])
   link = db.getOne()
   
