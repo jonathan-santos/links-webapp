@@ -15,6 +15,12 @@
       pattern="^(http(s)?:\/\/)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$" autofocus required>
   </div>
 
+  <div class='input-group mb-4'>
+    <label for='tag' class='form-label w-100'>tag:</label>
+
+    <input id='tag' name='tag' class='form-control' placeholder='tag' autocomplete='off' min='2' max='50'>
+  </div>
+
   <input class='btn btn-primary w-100' type="submit" value="Create link">
 </form>
 {% endblock %}
