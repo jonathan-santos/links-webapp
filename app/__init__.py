@@ -9,6 +9,7 @@ from .routes.register.router import register
 from .routes.login.router import login
 from .routes.logout.router import logout
 from .routes.links_new.router import links_new
+from .routes.tags.router import tags
 from .routes.tags_new.router import tags_new
 
 login_manager = LoginManager()
@@ -25,6 +26,7 @@ def init_app():
     app.register_blueprint(login)
     app.register_blueprint(logout)
     app.register_blueprint(links_new)
+    app.register_blueprint(tags)
     app.register_blueprint(tags_new)
 
     config_auth(login_manager)
