@@ -17,8 +17,8 @@ CREATE TABLE IF NOT EXISTS links (
   url TEXT NOT NULL,
   tag_id INT NOT NULL,
   user_id INT NOT NULL,
-  updated_at TIMESTAMP NOT NULL,
   created_at TIMESTAMP NOT NULL,
+  updated_at TIMESTAMP NOT NULL,
 	FOREIGN KEY (tag_id) REFERENCES tags (id),
 	FOREIGN KEY (user_id) REFERENCES users (id)
 );

@@ -1,9 +1,20 @@
 {% extends "layout.html" %}
 
 {% block head %}
-<title>Links New</title>
+<title>New Link</title>
 {% endblock %}
 
 {% block main %}
-<h1>Links New</h1>
+<h1 class='mb-5'>Create new Link</h1>
+
+<form action='/links/new' method='POST' class='needs-validation'>
+  <div class='input-group mb-4'>
+    <label for='link' class='form-label w-100'>link:</label>
+
+    <input id='link' name='link' class='form-control' placeholder='https://example.com' autocomplete='off'
+      pattern="^(http(s)?:\/\/)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$" autofocus required>
+  </div>
+
+  <input class='btn btn-primary w-100' type="submit" value="Create link">
+</form>
 {% endblock %}
