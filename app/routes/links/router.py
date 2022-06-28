@@ -38,13 +38,13 @@ def links_new_page():
       db.close()
       return ("tag length cannot be greater than 50", 400)
 
-    db.execute("SELECT id FROM tags WHERE title = %s", [tag])
+    db.execute("SELECT id FROM tags WHERE tagname = %s", [tag])
 
     tag_result = db.getOne()
 
     if tag_result == None:
       db.execute("""
-        INSERT INTO tags (title, created_at)
+        INSERT INTO tags (tagname, created_at)
         VALUES (%s, NOW())
         RETURNING id
       """, [clean_string(tag)])
@@ -73,7 +73,7 @@ def links_edit_page(link_id):
 
   if (request.method == 'GET'):
     db.execute("""
-    SELECT links.id, links.url, tags.title AS tag
+    SELECT links.id, links.url, tags.tagname
       FROM links
       JOIN tags
         ON links.tag_id = tags.id
@@ -113,13 +113,13 @@ def links_edit_page(link_id):
       db.close()
       return ("tag length cannot be greater than 50", 400)
 
-    db.execute("SELECT id FROM tags WHERE title = %s", [tag])
+    db.execute("SELECT id FROM tags WHERE tagname = %s", [tag])
 
     tag_result = db.getOne()
 
     if tag_result == None:
       db.execute("""
-        INSERT INTO tags (title, created_at)
+        INSERT INTO tags (tagname, created_at)
         VALUES (%s, NOW())
         RETURNING id
       """, [clean_string(tag)])

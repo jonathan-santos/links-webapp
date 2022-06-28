@@ -1,11 +1,11 @@
 {% extends "layout.html" %}
 
 {% block head %}
-<title>Tag: {{ tag['title'] }}</title>
+<title>Tag: {{ tag['tagname'] }}</title>
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Tag: {{ tag['title'] }}</h1>
+<h1 class='mb-5'>Tag: {{ tag['tagname'] }}</h1>
 
 {% if not link == None %}
   <a href='{{ link["url"] }}'>A link from this tag</a>

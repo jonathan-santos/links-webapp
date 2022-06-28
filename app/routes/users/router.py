@@ -17,7 +17,7 @@ def user_page(user_id):
     return ('Not found', 404)
 
   db.execute("""
-    SELECT DISTINCT tags.title
+    SELECT DISTINCT tags.tagname
       FROM tags
       JOIN links
         ON tags.id = links.tag_id
@@ -41,7 +41,7 @@ def user_tag_page(user_id, tag_id):
     db.close()
     return ('Not found', 404)
 
-  db.execute("SELECT title FROM tags WHERE id = %s", [tag_id])
+  db.execute("SELECT tagname FROM tags WHERE id = %s", [tag_id])
   tag = db.getOne()
 
   if tag == None:
@@ -59,6 +59,6 @@ def user_tag_page(user_id, tag_id):
 
   db.close()
 
-  title = f"{user['username']} - {tag['title']}"
+  title = f"{user['username']} - {tag['tagname']}"
   
   return render_template('user_tag.html', user=user, link=link, tag=tag, title=title)

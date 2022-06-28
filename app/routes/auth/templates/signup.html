@@ -1,13 +1,13 @@
 {% extends "layout.html" %}
 
 {% block head %}
-<title>Register</title>
+<title>Signup</title>
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Register</h1>
+<h1 class='mb-5'>Signup</h1>
 
-<form action='/register' method='POST' class='needs-validation'>
+<form action='/signup' method='POST' class='needs-validation'>
   <div class='input-group mb-4'>
     <label for='username' class='form-label w-100'>Username:</label>
 
@@ -55,7 +55,7 @@
       return
     }
 
-    fetch('/register', {
+    fetch('/signup', {
       method: 'POST',
       body: new FormData(e.target),
       redirect: 'follow'

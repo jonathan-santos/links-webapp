@@ -11,7 +11,7 @@ tags = Blueprint(
 
 @tags.route('/tags/')
 def tags_page():
-  db = DB("SELECT title from tags")
+  db = DB("SELECT tagname from tags")
   tags = db.getAll()
   db.close()
   
@@ -51,7 +51,7 @@ def tags_new_page():
     return ("tag length cannot be greater than 50", 400)
 
   db = DB("""
-    INSERT INTO tags (title, created_at)
+    INSERT INTO tags (tagname, created_at)
     VALUES (%s, NOW())
     RETURNING id
   """, [clean_string(tag)])

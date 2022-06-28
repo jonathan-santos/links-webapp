@@ -8,7 +8,7 @@
 <h1 class='mb-5'>{{ title }}</h1>
 
 {% if not link == None %}
-  <a href='{{ link["url"] }}'>A link from this user with tag {{ tag['title'] }}</a>
+  <a href='{{ link["url"] }}'>A link from this user with tag {{ tag['tagname'] }}</a>
 {% else %}
   This user does not have links with this tag
 {% endif %}

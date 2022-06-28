@@ -72,7 +72,7 @@ def account_page():
 @account.route('/account/links/')
 def account_links_page():
   db = DB("""
-    SELECT links.id, links.url, tags.title
+    SELECT links.id, links.url, tags.tagname
       FROM links
       JOIN tags
         ON links.tag_id = tags.id
