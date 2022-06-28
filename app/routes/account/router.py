@@ -3,14 +3,14 @@ from flask_login import login_required, current_user
 
 from app.db import DB
 
-user_links = Blueprint(
-  'user_links', __name__,
+account = Blueprint(
+  'account', __name__,
   template_folder='templates'
 )
 
 @login_required
-@user_links.route('/user/links')
-def user_links_page():
+@account.route('/account/links/')
+def account_links_page():
   db = DB("""
     SELECT links.id, links.url, tags.title
       FROM links
@@ -21,5 +21,5 @@ def user_links_page():
   links = db.getAll()
   db.close()
 
-  return render_template('user_links.html', links=links)
+  return render_template('account_links.html', links=links)
   
