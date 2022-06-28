@@ -6,8 +6,7 @@ from .links_new.router import links_new
 from .links_edit.router import links_edit
 from .user_links.router import user_links
 from .tags.router import tags
-from .user.router import user
-from .user_tag.router import user_tag
+from .users.router import users
 
 routes = [
   index,
@@ -18,6 +17,5 @@ routes = [
   links_edit,
   user_links,
   tags,
-  user,
-  user_tag
+  users,
 ]
