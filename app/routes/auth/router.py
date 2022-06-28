@@ -18,7 +18,7 @@ def logout_page():
   return redirect('/')
 
 @auth.route('/signup/', methods=['GET', 'POST'])
-def register_page():
+def signup_page():
   if is_user_authenticated():
     return redirect('/')
 
@@ -85,7 +85,8 @@ def register_page():
   user = {
     "id": user_id,
     "username": username,
-    "email": email
+    "email": email,
+    "password": password_hash
   }
 
   user_login(user)
@@ -132,7 +133,7 @@ def login_page():
   if not user:
     return ("email not found", 400)
 
-  if not check_password_hash(user[3], password):
+  if not check_password_hash(user["password"], password):
     return ("wrong password", 400)
 
   user_login(user)
