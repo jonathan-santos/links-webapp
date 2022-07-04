@@ -10,6 +10,8 @@ services:
       - .:/app
     networks:
       - default
+    env_file:
+      - .env
     environment:
       - FLASK_ENV=development
       - GUNICORN_CMD_ARGS=-w 1 --reload
