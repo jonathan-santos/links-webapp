@@ -11,6 +11,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-EXPOSE 3000
-
 CMD [ "gunicorn", "app:init_app()"]

@@ -1,2 +1,4 @@
-bind = '0.0.0.0:3000'
+from os import environ
+
+bind = f'0.0.0.0:{environ["PORT"]}'
 workers = 4

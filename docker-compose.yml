@@ -5,7 +5,7 @@ services:
     container_name: links-webapp-server
     build: .
     ports:
-      - 3000:3000
+      - ${PORT}:${PORT}
     volumes:
       - .:/app
     networks:
