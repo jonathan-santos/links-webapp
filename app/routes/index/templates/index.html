@@ -6,6 +6,10 @@
 
 {% block main %}
 
-<a href='{{ link }}' class='mt-3'>{{ link }}</p>
+{% if not link == None %}
+  <a href='{{ link["url"] }}' class='mt-3'>{{ link["url"] }}</p>
+{% else %}
+  No links registered yet
+{% endif %}
 
 {% endblock %}

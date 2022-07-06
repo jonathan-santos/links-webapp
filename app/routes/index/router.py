@@ -12,7 +12,7 @@ index = Blueprint(
 @index.route('/')
 def index_page():
   db = DB("SELECT url FROM links ORDER BY random() LIMIT 1")
-  link = db.getOne()[0]
+  link = db.getOne()
   db.close()
 
   return render_template('index.html', link=link)
