@@ -7,7 +7,7 @@
 {% block main %}
 <h1 class='mb-5'>Login</h1>
 
-<form action='/login' method='POST' class='needs-validation'>
+<form action='{{ url_for("auth.login_page") }}' method='POST' class='needs-validation'>
   <div class='input-group mb-4'>
     <label for='email' class='form-label w-100'>Email:</label>
 

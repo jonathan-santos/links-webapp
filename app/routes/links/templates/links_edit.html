@@ -7,7 +7,7 @@
 {% block main %}
 <h1 class='mb-5'>Update Link</h1>
 
-<form action='/links/edit/{{ link["id"] }}' method='POST' class='needs-validation'>
+<form action='{{ url_for("links.links_edit_page", link_id=link["id"]) }}' method='POST' class='needs-validation'>
   <div class='input-group mb-4'>
     <label for='link' class='form-label w-100'>link:</label>
 

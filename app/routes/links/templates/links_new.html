@@ -7,7 +7,7 @@
 {% block main %}
 <h1 class='mb-5'>Create new Link</h1>
 
-<form action='/links/new' method='POST' class='needs-validation'>
+<form action='{{ url_for("links.links_new_page") }}' method='POST' class='needs-validation'>
   <div class='input-group mb-4'>
     <label for='link' class='form-label w-100'>link:</label>
 
