@@ -1,4 +1,4 @@
-from flask import redirect, request, abort
+from flask import redirect, url_for, request, abort
 from flask_login import login_user, current_user
 from http import HTTPStatus
 
@@ -36,7 +36,7 @@ def config_auth(login_manager):
     if request.blueprint == 'api':
         abort(HTTPStatus.UNAUTHORIZED)
 
-    return redirect('/login')
+    return redirect(url_for('auth.login_page'))
 
   @login_manager.user_loader
   def load_user(user_id):
