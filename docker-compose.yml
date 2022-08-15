@@ -1,8 +1,8 @@
 version: '3.9'
 
 services:
-  server:
-    container_name: links-webapp-server
+  web:
+    container_name: links-webapp-web
     build: .
     ports:
       - ${PORT}:${PORT}
@@ -16,18 +16,18 @@ services:
       - FLASK_ENV=development
       - GUNICORN_CMD_ARGS=-w 1 --reload
     depends_on:
-      - postgres
+      - db
 
-  postgres:
-    container_name: links-webapp-postgres
+  db:
+    container_name: links-webapp-db
     image: postgres:14.3-alpine
     ports:
-      - 5432:5432
+      - ${DB_PORT}:${DB_PORT}
     volumes:
       - ./db/data:/var/lib/postgresql/data
     networks:
       - default
     environment:
-      - "POSTGRES_DB=${DB_DATABASE}"
-      - "POSTGRES_USER=${DB_USER}"
-      - "POSTGRES_PASSWORD=${DB_PASSWORD}"
+      - POSTGRES_DB=${DB_DATABASE}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
