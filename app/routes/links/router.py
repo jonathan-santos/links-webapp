@@ -10,8 +10,8 @@ links = Blueprint(
   template_folder='templates'
 )
 
-@login_required
 @links.route('/links/new', methods=['GET', 'POST'])
+@login_required
 def links_new_page():
   if (request.method == 'GET'):
     return render_template('links_new.html')
@@ -66,8 +66,8 @@ def links_new_page():
 
   return ('OK', 200)
 
-@login_required
 @links.route('/links/edit/<link_id>', methods=['GET', 'POST'])
+@login_required
 def links_edit_page(link_id):
   db = DB()
 

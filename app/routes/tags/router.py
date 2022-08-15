@@ -33,8 +33,8 @@ def tag_page(tag_id):
   
   return render_template('tag.html', tag=tag, link=link)
   
-@login_required
 @tags.route('/tags/new', methods=['GET', 'POST'])
+@login_required
 def tags_new_page():
   if (request.method == 'GET'):
     return render_template('new_tag.html')

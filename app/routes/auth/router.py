@@ -11,8 +11,8 @@ auth = Blueprint(
   template_folder='templates'
 )
 
-@login_required
 @auth.route('/logout/')
+@login_required
 def logout_page():
   logout_user()
   return redirect('/')

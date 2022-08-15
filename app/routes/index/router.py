@@ -8,7 +8,6 @@ index = Blueprint(
   template_folder='templates'
 )
 
-@login_required
 @index.route('/')
 def index_page():
   db = DB("SELECT url FROM links ORDER BY random() LIMIT 1")

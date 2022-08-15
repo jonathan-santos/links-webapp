@@ -10,8 +10,8 @@ account = Blueprint(
   template_folder='templates'
 )
 
-@login_required
 @account.route('/account/', methods=['GET', 'POST'])
+@login_required
 def account_page():
   if (request.method == 'GET'):
     return render_template('account.html', account=current_user)
@@ -68,8 +68,8 @@ def account_page():
 
   return ('OK', 200)
 
-@login_required
 @account.route('/account/links/')
+@login_required
 def account_links_page():
   db = DB("""
     SELECT links.id, links.url, tags.tagname
