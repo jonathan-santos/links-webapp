@@ -11,4 +11,4 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
-CMD [ "gunicorn", "app:init_app()" ,"--preload"]
+CMD [ "gunicorn", "app:init_app()"]
