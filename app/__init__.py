@@ -9,7 +9,7 @@ from .routes import routes
 login_manager = LoginManager()
 
 def init_app():
-  app = Flask(__name__)
+  app = Flask(__name__, static_folder='public', static_url_path='')
 
   load_config(app)
   login_manager.init_app(app)
