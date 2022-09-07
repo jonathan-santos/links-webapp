@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from re import match
 
@@ -61,10 +61,12 @@ def links_new_page():
     RETURNING id
   """, [clean_string(link), tag_id, current_user.id])
 
+  link_id = db.getOne()[0]
+
   db.save()
   db.close()
 
-  return ('OK', 200)
+  return redirect(url_for("account.account_links_page"))
 
 @links.route('/links/edit/<link_id>', methods=['GET', 'POST'])
 @login_required
@@ -89,8 +91,6 @@ def links_edit_page(link_id):
 
     return render_template('links_edit.html', link=link)
 
-  print("PUT link with id", link_id)
-  
   link = request.form.get('link', '')
   tag = request.form.get('tag', '')
 
@@ -139,4 +139,4 @@ def links_edit_page(link_id):
   db.save()
   db.close()
 
-  return ('OK', 200)
+  return ('Link updated!', 200)
