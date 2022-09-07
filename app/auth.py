@@ -24,7 +24,8 @@ def user_login(user):
       username=user["username"],
       email=user["email"],
       password=user["password"]
-    )
+    ),
+    remember=True
   )
 
 def is_user_authenticated():
