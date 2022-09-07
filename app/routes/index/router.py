@@ -10,8 +10,16 @@ index = Blueprint(
 
 @index.route('/')
 def index_page():
-  db = DB("SELECT url FROM links ORDER BY random() LIMIT 1")
+  db = DB("""
+    SELECT links.url, tags.id AS tag_id, tags.tagname
+      FROM links
+      JOIN tags
+        ON links.tag_id = tags.id
+  ORDER BY random()
+     LIMIT 1
+  """)
   link = db.getOne()
+
   db.close()
 
   return render_template('index.html', link=link)
