@@ -72,7 +72,7 @@ def account_page():
 @login_required
 def account_links_page():
   db = DB("""
-    SELECT links.id, links.url, tags.tagname
+    SELECT links.id, links.url, links.tag_id, tags.tagname
       FROM links
       JOIN tags
         ON links.tag_id = tags.id
