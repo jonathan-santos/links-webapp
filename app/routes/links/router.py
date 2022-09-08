@@ -140,3 +140,30 @@ def links_edit_page(link_id):
   db.close()
 
   return ('Link updated!', 200)
+
+@links.route('/links/delete/<link_id>', methods=['DELETE'])
+@login_required
+def links_delete(link_id):
+  db = DB()
+
+  db.execute("""
+  SELECT links.id, links.url, tags.tagname
+    FROM links
+    JOIN tags
+      ON links.tag_id = tags.id
+    WHERE links.id = %s AND links.user_id = %s
+  """, [link_id, current_user.id])
+
+  link = db.getOne()
+
+  if not link:
+    return ('Not found', 404)
+
+  db.execute("""
+    DELETE FROM links
+          WHERE id = %s
+  """, [link_id])
+
+  db.close()
+
+  return ('Deleted successfully', 404)
