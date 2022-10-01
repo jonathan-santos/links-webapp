@@ -131,10 +131,10 @@ def login_page():
   db.close()
 
   if not user:
-    return ("email not found", 400)
+    return ("credentials invalid", 400)
 
   if not check_password_hash(user["password"], password):
-    return ("wrong password", 400)
+    return ("credentials invalid", 400)
 
   user_login(user)
 
