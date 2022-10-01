@@ -5,34 +5,54 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5 mt-5'>Your links</h1>
 
-<div class='w-100 px-5 text-center'>
-  <table class='table table-striped table-bordered table-sm'>
-    <thead>
-      <tr>
-        <th>tag</th>
-        <th>url</th>
-      </tr>
-    </thead>
-    
-    <tbody>
-      {% for link in links %}
-      <tr>
-        <td>
-          <a href='{{ url_for("tags.tag_page", tag_id=link["tag_id"]) }}'>
-            {{ link['tagname'] }}
-          </a>
-        </td>
+{% if links|length > 0 %}
+  <h1 class='mb-5 mt-5'>Your links</h1>
 
-        <td>
-          <a href='{{ link["url"] }}'>
-            {{ link['url'] }}
-          </a>
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
-</div>
+  <div class='w-100 text-center table-responsive overflow-hidden'>
+    <table class='table table-striped table-bordered table-sm'>
+      <thead>
+        <tr class="d-flex">
+          <th class="col-3 col-md-2">Tag</th>
+          <th class="col-4 col-md-6 col-lg-8">Url</th>
+          <th class="col-5 col-md-4 col-lg-2">Actions</th>
+        </tr>
+      </thead>
+      
+      <tbody>
+        {% for link in links %}
+        <tr class="d-flex">
+          <td class="col-3 col-md-2 overflow-hidden">
+            <a href='{{ url_for("tags.tag_page", tag_id=link["tag_id"]) }}'>
+              {{ link['tagname'] | capitalize }}
+            </a>
+          </td>
+
+          <td class="col-4 col-md-6 col-lg-8 overflow-hidden">
+            <a href='{{ link["url"] }}'>
+              {{ link['url'] }}
+            </a>
+          </td>
+
+          <td class="col-2 col-md-2 col-lg-1 overflow-hidden">
+            <a href='{{ url_for("links.links_edit_page", link_id=link["id"]) }}' class='btn btn-primary'>
+              Edit
+            </a>
+          </td>
+
+          <td class="col-3 col-md-2 col-lg-1 overflow-hidden">
+            <form action='{{ url_for("links.links_delete", link_id=link["id"]) }}' method="POST">
+              <button class='btn btn-danger'>
+                Delete
+              </button>
+            </form>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% else %}
+  No links registered yet
+{% endif %}
 {% endblock %}

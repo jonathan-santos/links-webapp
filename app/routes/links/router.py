@@ -139,9 +139,9 @@ def links_edit_page(link_id):
   db.save()
   db.close()
 
-  return ('Link updated!', 200)
+  return redirect(url_for("account.account_links_page"))
 
-@links.route('/links/delete/<link_id>', methods=['DELETE'])
+@links.route('/links/delete/<link_id>', methods=['POST'])
 @login_required
 def links_delete(link_id):
   db = DB()
@@ -164,6 +164,7 @@ def links_delete(link_id):
           WHERE id = %s
   """, [link_id])
 
+  db.save()
   db.close()
 
-  return ('Deleted successfully', 404)
+  return redirect(url_for("account.account_links_page"))
