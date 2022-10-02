@@ -5,11 +5,15 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Tags</h1>
+<h1 class='display-1 mb-5'>Tags</h1>
 
-<ul>
+<ul class='list-unstyled'>
   {% for tag in tags %}
-  <li>{{ tag['tagname'] }}</li>
+    <li>
+      <a href='{{ url_for("tags.tag_page", tag_id=tag["id"]) }}'>
+        {{ tag['tagname'] | capitalize }}
+      </a>
+    </li>
   {% endfor %}
 </ul>
 {% endblock %}

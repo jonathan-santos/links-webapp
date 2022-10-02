@@ -11,7 +11,7 @@ tags = Blueprint(
 
 @tags.route('/tags/')
 def tags_page():
-  db = DB("SELECT tagname from tags")
+  db = DB("SELECT id, tagname from tags")
   tags = db.getAll()
   db.close()
   

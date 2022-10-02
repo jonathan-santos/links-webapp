@@ -5,7 +5,10 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Tag: {{ tag['tagname'] }}</h1>
+
+<h1 class='display-1 mb-5'>
+  {{ tag['tagname'] | capitalize }}
+</h1>
 
 {% if not link == None %}
   <a href='{{ link["url"] }}'>A link from this tag</a>

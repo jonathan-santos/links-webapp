@@ -5,10 +5,10 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Create new Tag</h1>
+<h1 class='display-1'>Create new Tag</h1>
 
-<form action='{{ url_for("tags.tags_new_page") }}' method='POST' class='needs-validation'>
-  <div class='input-group mb-4'>
+<form action='{{ url_for("tags.tags_new_page") }}' method='POST' class='needs-validation mt-5'>
+  <div class='input-group mb-5'>
     <label for='tag' class='form-label w-100'>tag:</label>
 
     <input id='tag' name='tag' class='form-control' placeholder='tag' autocomplete='off' min='2' max='50' autofocus required>
