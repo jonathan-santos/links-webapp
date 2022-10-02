@@ -17,7 +17,7 @@ def user_page(user_id):
     return ('Not found', 404)
 
   db.execute("""
-    SELECT DISTINCT tags.tagname
+    SELECT DISTINCT tags.id, tags.tagname
       FROM tags
       JOIN links
         ON tags.id = links.tag_id
@@ -34,14 +34,14 @@ def user_page(user_id):
   
 @users.route('/users/<user_id>/tag/<tag_id>')
 def user_tag_page(user_id, tag_id):
-  db = DB("SELECT username FROM users WHERE id = %s", [user_id])
+  db = DB("SELECT id, username FROM users WHERE id = %s", [user_id])
   user = db.getOne()
 
   if user == None:
     db.close()
     return ('Not found', 404)
 
-  db.execute("SELECT tagname FROM tags WHERE id = %s", [tag_id])
+  db.execute("SELECT id, tagname FROM tags WHERE id = %s", [tag_id])
   tag = db.getOne()
 
   if tag == None:
@@ -58,7 +58,5 @@ def user_tag_page(user_id, tag_id):
   link = db.getOne()
 
   db.close()
-
-  title = f"{user['username']} - {tag['tagname']}"
   
-  return render_template('user_tag.html', user=user, link=link, tag=tag, title=title)
+  return render_template('user_tag.html', user=user, link=link, tag=tag)

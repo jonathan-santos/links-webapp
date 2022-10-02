@@ -5,12 +5,27 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>{{ title }}</h1>
+<h1 class='display-1 text-center'>
+  {{ user.username | capitalize }}
 
-{% if not link == None %}
-  <a href='{{ link["url"] }}'>A link from this user with tag {{ tag['tagname'] }}</a>
-{% else %}
-  This user does not have links with this tag
-{% endif %}
+  <br>
+
+  <span class='display-4'>
+    {{ tag.tagname | capitalize }}
+  </span>
+</h1>
+
+<div class='my-5'>
+  {% if not link == None %}
+    <a href='{{ link["url"] }}'>A link from this user with tag {{ tag['tagname'] }}</a>
+  {% else %}
+    This user does not have links with this tag
+  {% endif %}
+</div>
+
+<a href='{{ url_for("tags.tag_page", tag_id=tag["id"]) }}'>
+  More links with this tag
+</a>
+
 
 {% endblock %}

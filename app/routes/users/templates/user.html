@@ -5,22 +5,30 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>User: {{ user['username'] }}</h1>
+<h1 class='display-1'>
+  {{ user['username'] | capitalize }}
+</h1>
+
+<div class='my-5'>
+  {% if not link == None %}
+    <a href='{{ link["url"] }}'>A link from this user</a>
+  {% else %}
+    This user does not have links yet
+  {% endif %}
+</div>
 
 {% if tags|length > 0 %}
-<p>Tags this user has links with</p>
-
-<ul>
-  {% for tag in tags %}
-    <li>{{ tag['tagname'] }}</li>
-  {% endfor %}
-</ul>
-{% endif %}
-
-{% if not link == None %}
-  <a href='{{ link["url"] }}'>A link from this user</a>
-{% else %}
-  This user does not have links yet
+  <p>This user has links with tags:</p>
+  
+  <ul class="list-unstyled">
+    {% for tag in tags %}
+      <li>
+        <a href='{{ url_for("users.user_tag_page", user_id=user["id"], tag_id=tag["id"]) }}'>
+          {{ tag['tagname'] | capitalize }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
 {% endif %}
 
 {% endblock %}
