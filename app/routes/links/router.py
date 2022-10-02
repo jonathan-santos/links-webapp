@@ -22,7 +22,7 @@ def links_new_page():
   if not link:
       return ("link cannot be empty", 400)
 
-  if not match("^(http(s)?:\/\/)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$", link):
+  if not match("(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]", link):
     return ("links is invalid", 400)
 
   db = DB()

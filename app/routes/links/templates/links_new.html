@@ -11,8 +11,8 @@
   <div class='input-group mb-4'>
     <label for='link' class='form-label w-100'>link:</label>
 
-    <input id='link' name='link' class='form-control' placeholder='https://example.com' autocomplete='off'
-      pattern="^(http(s)?:\/\/)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$" autofocus required>
+    <input id='link' type='url' name='link' class='form-control' placeholder='https://example.com' autocomplete='off'
+      pattern="(\b(https?|ftp|file)://)?[-A-Za-z0-9+&@#/%?=~_|!:,.;]+[-A-Za-z0-9+&@#/%=~_|]" autofocus required>
   </div>
 
   <div class='input-group mb-5'>
