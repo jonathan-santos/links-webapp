@@ -5,7 +5,7 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Update Link</h1>
+<h1 class='display-1 mb-5'>Update Link</h1>
 
 <form action='{{ url_for("links.links_edit_page", link_id=link["id"]) }}' method='POST' class='needs-validation'>
   <div class='input-group mb-4'>
@@ -15,7 +15,7 @@
       pattern="^(http(s)?:\/\/)+[\w\-\._~:\/?#[\]@!\$&'\(\)\*\+,;=.]+$" value='{{ link["url"] }}' autofocus required>
   </div>
 
-  <div class='input-group mb-4'>
+  <div class='input-group mb-5'>
     <label for='tag' class='form-label w-100'>tag:</label>
 
     <input id='tag' name='tag' class='form-control' placeholder='tag' autocomplete='off' min='2' max='50' value='{{ link["tagname"] }}'>
