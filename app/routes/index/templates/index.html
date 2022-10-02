@@ -7,10 +7,14 @@
 {% block main %}
 
 {% if not link == None %}
-  <a href='{{ link["url"] }}' class='mt-3'>{{ link["url"] }}</a>
+  <a href='{{ link["url"] }}' class='mt-3 h1'>{{ link["url"] }}</a>
 
   <span class='mt-2'>
-    tag: <a href='{{ url_for('tags.tag_page', tag_id=link["tag_id"]) }}'>{{ link["tagname"] }}</a>
+    Tag: <a href='{{ url_for("tags.tag_page", tag_id=link["tag_id"]) }}'>{{ link["tagname"] }}</a>
+  </span>
+
+  <span class='mt-2'>
+    By: <a href='{{ url_for("users.user_page", user_id=link["user_id"]) }}'>{{ link["username"] }}</a>
   </span>
 {% else %}
   No links registered yet

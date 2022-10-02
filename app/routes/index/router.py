@@ -11,14 +11,19 @@ index = Blueprint(
 @index.route('/')
 def index_page():
   db = DB("""
-    SELECT links.url, tags.id AS tag_id, tags.tagname
+    SELECT links.url, tags.id AS tag_id, tags.tagname, links.user_id, users.username
       FROM links
       JOIN tags
         ON links.tag_id = tags.id
+      JOIN users
+        ON links.user_id = users.id
   ORDER BY random()
      LIMIT 1
   """)
+
   link = db.getOne()
+
+  print(link)
 
   db.close()
 
