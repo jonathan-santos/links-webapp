@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Account</h1>
+<h1 class='display-1'>Account</h1>
 
-<form action='{{ url_for("account.account_page") }}' method='POST' class='needs-validation'>
+<form action='{{ url_for("account.account_page") }}' method='POST' class='needs-validation p-5'>
   <div class='input-group mb-4'>
     <label for='username' class='form-label w-100'>Username:</label>
 
@@ -29,7 +29,7 @@
       maxlength='50'>
   </div>
 
-  <div class='input-group mb-4'>
+  <div class='input-group mb-5'>
     <label for='new-password' class='form-label w-100'>New password:</label>
 
     <input id='new-password' name='new-password' class='form-control' placeholder='New password'
