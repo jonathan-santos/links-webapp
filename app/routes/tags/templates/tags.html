@@ -7,7 +7,7 @@
 {% block main %}
 <h1 class='display-1 mb-5'>Tags</h1>
 
-<ul class='list-unstyled'>
+<ul class='list-unstyled text-center'>
   {% for tag in tags %}
     <li>
       <a href='{{ url_for("tags.tag_page", tag_id=tag["id"]) }}'>

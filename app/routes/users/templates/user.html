@@ -20,7 +20,7 @@
 {% if tags|length > 0 %}
   <p>This user has links with tags:</p>
   
-  <ul class="list-unstyled">
+  <ul class="list-unstyled text-center">
     {% for tag in tags %}
       <li>
         <a href='{{ url_for("users.user_tag_page", user_id=user["id"], tag_id=tag["id"]) }}'>
