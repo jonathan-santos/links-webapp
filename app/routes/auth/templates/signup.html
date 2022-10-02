@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Signup</h1>
+<h1 class='display-1'>Signup</h1>
 
-<form action='{{ url_for("auth.signup_page") }}' method='POST' class='needs-validation'>
+<form action='{{ url_for("auth.signup_page") }}' method='POST' class='needs-validation p-5 pb-3'>
   <div class='input-group mb-4'>
     <label for='username' class='form-label w-100'>Username:</label>
 
@@ -29,7 +29,7 @@
       maxlength='50' required>
   </div>
 
-  <div class='input-group mb-4'>
+  <div class='input-group mb-5'>
     <label for='confirm-password' class='form-label w-100'>Confirm password:</label>
 
     <input id='confirm-password' name='confirm-password' class='form-control' placeholder='confirm-password'
@@ -39,7 +39,7 @@
   <input class='btn btn-primary w-100' type="submit" value="Register">
 </form>
 
-<div class='mt-4'>
+<div>
   <a href='/login' class='link-primary'>Login instead</a>  
 </div>
 

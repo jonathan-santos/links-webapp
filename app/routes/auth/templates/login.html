@@ -5,9 +5,9 @@
 {% endblock %}
 
 {% block main %}
-<h1 class='mb-5'>Login</h1>
+<h1 class='display-1'>Login</h1>
 
-<form action='{{ url_for("auth.login_page") }}' method='POST' class='needs-validation'>
+<form action='{{ url_for("auth.login_page") }}' method='POST' class='needs-validation p-5 pb-3'>
   <div class='input-group mb-4'>
     <label for='email' class='form-label w-100'>Email:</label>
 
@@ -15,7 +15,7 @@
       pattern='[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$' required>
   </div>
 
-  <div class='input-group mb-4'>
+  <div class='input-group mb-5'>
     <label for='password' class='form-label w-100'>Password:</label>
 
     <input id='password' name='password' class='form-control' placeholder='password' type='password' minlength='1'
@@ -25,7 +25,7 @@
   <input class='btn btn-primary w-100' type="submit" value="Login">
 </form>
 
-<div class='mt-4'>
+<div>
   <a href='/signup' class='link-primary'>Signup instead</a>
 </div>
 
